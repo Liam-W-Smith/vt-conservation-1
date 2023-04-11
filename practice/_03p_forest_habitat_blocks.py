@@ -10,7 +10,7 @@
 # import tools from WBT module
 
 import sys
-sys.path.insert(1, '/Users/jhowarth/tools')     # path points to my WBT directory
+sys.path.insert(1, '/Users/liamsmith/Documents/GEOG_310/wbt_starter')     # path points to my WBT directory
 from WBT.whitebox_tools import WhiteboxTools
 
 # declare a name for the tools
@@ -26,7 +26,7 @@ wbt = WhiteboxTools()
 # For example, my root points to the directory (folder) of s23 in GEOG0310 
 # on an external drive named drosera. 
 
-root = "/Volumes/drosera/GEOG0310/s23"
+root = "/Users/liamsmith/Documents/GEOG_310/vt-conservation/practice/practice_files"
 
 # Set up separate directories to store temporary and keeper outputs. 
 
@@ -40,7 +40,7 @@ keeps = root+"/keeps/"
 # Point to directory where you hold input data. 
 # The 'midd' DEM is relatively small and good for testing. 
 
-lc = root+"/inputs/LCHP_1m_midd.tif"  
+lc = root+"/inputs/LCHP_1m_midd.tif"  # do i have this file??
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # IMPLEMENT
