@@ -9,8 +9,6 @@
 
 # import tools from WBT module
 
-# import os
-# from WBT.whitebox_tools import WhiteboxTools
 import sys
 sys.path.insert(1, '/Users/liamsmith/Documents/GEOG_310/wbt_starter')     # path points to my WBT directory
 from WBT.whitebox_tools import WhiteboxTools
@@ -51,3 +49,14 @@ dem =root+"/inputs/DEM_10m_midd.tif"
 # # Classify landforms from DEM with geomorphons. 
 # # See WBT manual for parameter definitions. 
 
+wbt.geomorphons(
+    dem = dem, 
+    output = keeps + "_0101_landforms.tif", # note: apparently it can id keeps within root
+    search=100, 
+    threshold=0.0, 
+    fdist=0, 
+    skip=0, 
+    forms=True, 
+    residuals=False, 
+    # callback=default_callback
+)
