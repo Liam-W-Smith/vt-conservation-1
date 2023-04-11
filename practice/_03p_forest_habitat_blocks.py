@@ -40,7 +40,7 @@ keeps = root+"/keeps/"
 # Point to directory where you hold input data. 
 # The 'midd' DEM is relatively small and good for testing. 
 
-lc = root+"/inputs/LCHP_1m_midd.tif"  # do i have this file??
+lc = root+"/inputs/LCHP_1m_midd.tif"  
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # IMPLEMENT

@@ -40,7 +40,7 @@ keeps = root+"/keeps/"
 # Point to directory where you hold input data. 
 # The 'midd' DEM is relatively small and good for testing. 
 
-dem =root+"/inputs/DEM_10m_midd.tif"  # do i have this file???
+dem =root+"/inputs/DEM_10m_midd.tif" 
 
 # ------------------------------------------------------------------------------
 # IMPLEMENT
