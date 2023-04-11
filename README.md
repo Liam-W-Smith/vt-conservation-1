@@ -21,17 +21,18 @@ You can access data for the practice scripts [here][data].
 | DEM_10m_midd.tif  | 10m 3DEP for Middlebury, Vermont.  |
 | LCHP_1m_midd.tif  | 1m Vermont Land Cover dataset with agriculture, roads, and building zones for Middlebury, Vermont. | 
 
+### Data directory structure
 
 To use this data in the practice scripts, you will need to:  
 
-1. Create four sub-directories in a root directory on a drive as shown below. The three directories should be named:
+1. Create four sub-directories in a parent directory on a local drive as shown in the picture below. The four directories should be named:
 
-    * inputs
-    * keeps
-    * projects 
-    * temps 
+    * **inputs**: to store starting datasets
+    * **keeps**: to store final outputs of a model
+    * **projects**: to store qgis projects for viewing outputs
+    * **temps**: to store intermediate outputs of the model that can be deleted after the model runs 
 
-![directory](assets/directory_.png) 
+![directory](assets/directory_structure.png) 
 
 2. Download the required datasets and place them in the inputs folder.  
 
@@ -43,7 +44,27 @@ root = "/Volumes/drosera/GEOG0310/s23"
 
 In the above example, the root variable points to the s23 folder in GEOG0310 on an external hardrive named drosera. 
 
-### Solutions 
+### WBT path 
+
+I like to keep my WBT directory separate from my data. I find that this makes it easier to update the WBT directory with new versions of the tools.
+
+![tools path](assets/tools_path.png)
+
+Most of the practice and solution scripts start with the code block shown below. This points to my local WBT directory.  
+
+```python  
+# import tools from WBT module
+
+import sys
+sys.path.insert(1, '/Users/jhowarth/tools')     # path points to my WBT directory
+from WBT.whitebox_tools import WhiteboxTools
+
+# declare a name for the tools
+
+wbt = WhiteboxTools()
+```
+
+To run the scripts, you will need to update the path so that it points to the parent directory of your local WBT sub-directory.
 
 ### Contact 
 
