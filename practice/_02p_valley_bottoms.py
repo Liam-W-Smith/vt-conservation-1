@@ -49,10 +49,22 @@ dem =root+"/inputs/DEM_10m_midd.tif"
 # Classify landforms from DEM with geomorphons. 
 # See WBT manual for parameter definitions.
 
+wbt.geomorphons(
+    dem = dem, 
+    output = keeps + "_0201_landforms.tif", # note: apparently it can id keeps within root
+    search=100, 
+    threshold=0.0, 
+    fdist=0, 
+    skip=0, 
+    forms=True, 
+    residuals=False, 
+    # callback=default_callback
+)
 
 
 # Threshold landform class to isolate valley bottoms. 
  
+#  do we just run the thing again with a threshold??
 
 
 # Remove noise by taking majority class within neighborhood kernel filter.
