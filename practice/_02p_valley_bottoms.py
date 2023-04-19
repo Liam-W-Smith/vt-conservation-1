@@ -51,7 +51,7 @@ dem =root+"/inputs/DEM_10m_midd.tif"
 
 wbt.geomorphons(
     dem = dem, 
-    output = keeps + "_0201_landforms.tif", # note: apparently it can id keeps within root
+    output = temps + "_0201_landforms.tif", # note: apparently it can id keeps within root
     search=100, 
     threshold=0.0, 
     fdist=0, 
@@ -64,8 +64,28 @@ wbt.geomorphons(
 
 # Threshold landform class to isolate valley bottoms. 
  
-#  do we just run the thing again with a threshold??
-
+wbt.greater_than( # in "math and statistical analysis" in wbt
+    # returns a 1 if input1 greater than (or equal to if set true) input2
+    # in this case, gives 1 for valleys and pits
+  input1 = temps+"_0201_landforms.tif", 
+  input2 = 7,
+  output = temps+"_0202_valley_bottoms.tif",
+  incl_equals=True
+)
 
 # Remove noise by taking majority class within neighborhood kernel filter.
 
+wbt.majority_filter( # in "filters" in wbt
+    # moving kernel over every pixel in an image, it assigns to a new image the value of the mode within the search distance for each pixel
+    i = temps+"_0202_valley_bottoms.tif",                   # i = input raster file
+    output = temps+"_0203_valley_bottoms_smoothed.tif",     # o = output raster file
+    filterx=5,                                              # Size of the filter kernel in the x-direction
+    filtery=5                                               # Size of the filter kernel in the y-direction
+  )
+
+wbt.clump( #create clumps -- finding each contiguous section of lowlands
+    i = temps+"_0203_valley_bottoms_smoothed.tif", 
+    output = keeps+"_0204_valley_bottoms_clumps.tif", 
+    diag=True, 
+    zero_back=True, 
+)
