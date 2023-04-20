@@ -278,3 +278,21 @@ wbt.divide(
     input2 = 4046.86, 
     output = keeps+"_0353_forested_habitat_blocks_acres.tif",
 )
+
+# ------------------------------------------------------------------------------
+# 6. Apply area criterion on forest blocks. 
+# ------------------------------------------------------------------------------
+
+# Select forest blocks that are greater than 20 acres. 
+
+
+
+# Mask background 
+
+
+
+# Replace background value with zero.
+
+
+# Re-clump blocks.
+

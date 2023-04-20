@@ -89,3 +89,33 @@ wbt.clump( #create clumps -- finding each contiguous section of lowlands
     diag=True, 
     zero_back=True, 
 )
+
+# ------------------------------------------------------------------------------
+# Remove developed land cover from valley bottoms. 
+# ------------------------------------------------------------------------------
+
+# Resample lc to match valley cell size. 
+
+
+
+# Reclassify lc to make developed land eraser.
+
+
+
+# Erase developed land from valley bottoms.  
+
+
+
+# Re-clump undeveloped lowlands to identify individual objects. 
+
+
+
+# ------------------------------------------------------------------------------
+# Make copies of output with background masked and background 0.
+# ------------------------------------------------------------------------------
+
+# Mask background.
+
+
+
+# Set background of blocks to no data. 
