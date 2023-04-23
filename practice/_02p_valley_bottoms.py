@@ -32,6 +32,7 @@ root = "/Users/liamsmith/Documents/GEOG_310/vt-conservation/practice/practice_fi
 
 temps = root+"/temps/"     
 keeps = root+"/keeps/"   
+starts = root+"/inputs/" 
 
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #  Required datasets:
@@ -41,6 +42,7 @@ keeps = root+"/keeps/"
 # The 'midd' DEM is relatively small and good for testing. 
 
 dem =root+"/inputs/DEM_10m_midd.tif" 
+lc = starts+"LCHP_1m_Midd.tif"
 
 # ------------------------------------------------------------------------------
 # IMPLEMENT
@@ -83,6 +85,7 @@ wbt.majority_filter( # in "filters" in wbt
     filtery=5                                               # Size of the filter kernel in the y-direction
   )
 
+# Clump valley bottoms into distinct objects. 
 wbt.clump( #create clumps -- finding each contiguous section of lowlands
     i = temps+"_0203_valley_bottoms_smoothed.tif", 
     output = keeps+"_0204_valley_bottoms_clumps.tif", 
@@ -93,12 +96,26 @@ wbt.clump( #create clumps -- finding each contiguous section of lowlands
 # ------------------------------------------------------------------------------
 # Remove developed land cover from valley bottoms. 
 # ------------------------------------------------------------------------------
-
+# NOtE: have not rubn anything vbelow ehre
 # Resample lc to match valley cell size. 
 
-
+wbt.resample(
+    inputs = lc, 
+    output = temps+"_0411_lc_resample.tif", 
+    cell_size = None, 
+    base = valleys, 
+    method = "nn"
+)
 
 # Reclassify lc to make developed land eraser.
+
+wbt.reclass( # in "gis analysis" in wbt
+    # reclass allows a user to specify how to change the values in an input raster to an output raster
+    i = temps+"_0411_lc_resample.tif",                                     # input raster
+    output = temps+"_0412_devt_eraser.tif",                                  # output raster
+    reclass_vals = "0;1;0;2;0;3;1;4;1;5;1;6;1;7;1;8;1;9;1;10",      # FIX THE RECLASS
+    assign_mode=True                                                    # reclass_vals values are interpreted as new value; old value pairs (INSTEAD OF TRIPLETS)
+) # note: possible to work with NoData and if a number is not within a range it will remain its value in new raster
 
 
 
