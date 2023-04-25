@@ -37,8 +37,8 @@ keeps = root+"/keeps/"
 #  Required datasets:
 #  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-valleys = keeps+"_0204_valley_bottoms_clumps.tif"
-blocks = temps+"_0343_forested_habitat_blocks.tif"
+valleys = temps+"_0214_valleys_devt_erased_clumps.tif"
+blocks = keeps+"_0364_block_clumps.tif"
 
 
 # ==============================================================================

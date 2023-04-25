@@ -285,14 +285,34 @@ wbt.divide(
 
 # Select forest blocks that are greater than 20 acres. 
 
-
+wbt.greater_than(
+    input1 = keeps+"_0353_forested_habitat_blocks_acres.tif", 
+    input2 = 20, 
+    output = temps+"_0361_bigger_blocks.tif", 
+    incl_equals=False, 
+    # callback=default_callback
+)
 
 # Mask background 
 
-
+wbt.set_nodata_value(
+    i = temps+"_0361_bigger_blocks.tif", 
+    output = temps+"_0362_bigger_blocks_masked.tif", 
+    back_value=0.0,
+)
 
 # Replace background value with zero.
-
+# REDUNDANT?
+wbt.convert_nodata_to_zero(
+    i = temps+"_0362_bigger_blocks_masked.tif", 
+    output = temps+"_0363_bigger_blocks_back0.tif", 
+)
 
 # Re-clump blocks.
 
+wbt.clump(
+    i = temps+"_0363_bigger_blocks_back0.tif", 
+    output = keeps+"_0364_block_clumps.tif", 
+    diag=True, 
+    zero_back=True
+)

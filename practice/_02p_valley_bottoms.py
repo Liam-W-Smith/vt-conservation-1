@@ -96,12 +96,14 @@ wbt.clump( #create clumps -- finding each contiguous section of lowlands
 # ------------------------------------------------------------------------------
 # Remove developed land cover from valley bottoms. 
 # ------------------------------------------------------------------------------
-# NOtE: have not rubn anything vbelow ehre
+
 # Resample lc to match valley cell size. 
+
+valleys = keeps+"_0204_valley_bottoms_clumps.tif"
 
 wbt.resample(
     inputs = lc, 
-    output = temps+"_0411_lc_resample.tif", 
+    output = temps+"_0211_lc_resample.tif", 
     cell_size = None, 
     base = valleys, 
     method = "nn"
@@ -109,22 +111,31 @@ wbt.resample(
 
 # Reclassify lc to make developed land eraser.
 
+# NOT SURE WHERE TO FIND THE STUFF
 wbt.reclass( # in "gis analysis" in wbt
     # reclass allows a user to specify how to change the values in an input raster to an output raster
-    i = temps+"_0411_lc_resample.tif",                                     # input raster
-    output = temps+"_0412_devt_eraser.tif",                                  # output raster
-    reclass_vals = "0;1;0;2;0;3;1;4;1;5;1;6;1;7;1;8;1;9;1;10",      # FIX THE RECLASS
+    i = temps+"_0211_lc_resample.tif",                                     # input raster
+    output = temps+"_0212_devt_eraser.tif",                                  # output raster
+    reclass_vals = "1;1;1;2;1;3;1;4;0;5;0;6;0;7;0;8;0;9;0;10",      # FIX THE RECLASS
     assign_mode=True                                                    # reclass_vals values are interpreted as new value; old value pairs (INSTEAD OF TRIPLETS)
 ) # note: possible to work with NoData and if a number is not within a range it will remain its value in new raster
 
 
-
 # Erase developed land from valley bottoms.  
-
+wbt.multiply(
+    input1 = temps+"_0212_devt_eraser.tif", 
+    input2 = temps+"_0211_lc_resample.tif", 
+    output = temps+"_0213_valleys_devt_erased.tif", 
+)
 
 
 # Re-clump undeveloped lowlands to identify individual objects. 
-
+wbt.clump(
+    i = temps+"_0213_valleys_devt_erased.tif", 
+    output = temps+"_0214_valleys_devt_erased_clumps.tif", 
+    diag=True, 
+    zero_back=True
+)
 
 
 # ------------------------------------------------------------------------------
@@ -132,7 +143,11 @@ wbt.reclass( # in "gis analysis" in wbt
 # ------------------------------------------------------------------------------
 
 # Mask background.
+wbt.set_nodata_value(
+    i = temps+"_0214_valleys_devt_erased_clumps.tif", 
+    output = keeps+"_0215_potential_connector_clumps.tif", 
+    back_value=0.0,
+)
 
 
-
-# Set background of blocks to no data. 
+# Set background of blocks to no data.  (0???)
