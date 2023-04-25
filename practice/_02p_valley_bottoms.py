@@ -150,4 +150,3 @@ wbt.set_nodata_value(
 )
 
 
-# Set background of blocks to no data.  (0???)

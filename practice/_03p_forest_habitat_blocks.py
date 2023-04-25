@@ -287,7 +287,7 @@ wbt.divide(
 
 wbt.greater_than(
     input1 = keeps+"_0353_forested_habitat_blocks_acres.tif", 
-    input2 = 20, 
+    input2 = 100, 
     output = temps+"_0361_bigger_blocks.tif", 
     incl_equals=False, 
     # callback=default_callback
@@ -302,7 +302,7 @@ wbt.set_nodata_value(
 )
 
 # Replace background value with zero.
-# REDUNDANT?
+# REDUNDANT? Yes, could be more efficient
 wbt.convert_nodata_to_zero(
     i = temps+"_0362_bigger_blocks_masked.tif", 
     output = temps+"_0363_bigger_blocks_back0.tif", 

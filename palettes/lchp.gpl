@@ -1,0 +1,14 @@
+GIMP Palette
+Name: QGIS Palette
+Columns: 4
+#
+171 217 152	Tree canopy
+235 240 156	Grass/shrub
+149 230 213	Water
+230 215 139	Active clearing
+247 247 247	Bare soil
+ 82  82  82	Buildings
+247 247 247	Roads
+204 204 204	Other pavement
+247 247 247	Railroads
+222 222 222	Built proximity
